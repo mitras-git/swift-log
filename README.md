@@ -84,25 +84,34 @@ Use either the Xcode or Ninja generator:
 
 ```bash
 cmake -B build -G Xcode
-cmake --build build
+cmake --build build --config Release
 ```
 or:
 
 ```bash
-cmake -B build -G Ninja
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+### Build on Linux
+
+Use Ninja:
+
+```bash
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
 ### Build on Windows
 
-Use Ninja:
+Run from an **x64 Native Tools Command Prompt for VS** (or ensure `swiftc`, `cmake`, and `ninja` are available in `%PATH%`):
 
 ```powershell
-cmake -B build -G Ninja
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
-Swift 6.1+ from the official [Swift for Windows](https://www.swift.org/install/windows/) is required. `swiftc`, `cmake` and `ninja` must be available in `%PATH%`.
+Swift 6.1+ from the official [Swift for Windows](https://www.swift.org/install/windows/) is required.
 
 ### Install
 
@@ -112,8 +121,18 @@ cmake --install build
 
 CMake builds the `Logging` and `InMemoryLogging` libraries. Builds are shared
 libraries by default, and can be switched to static libraries with
-`BUILD_SHARED_LIBS=OFF`.
+`-DBUILD_SHARED_LIBS=OFF`.
+
+### Consuming with CMake
+
+Downstream CMake projects can find and link against `swift-log`:
+
+```cmake
+find_package(SwiftLog REQUIRED)
+
+target_link_libraries(YourTarget PRIVATE Logging)
+```
 
 ### Tests
 
-Tests are not included in the CMake build; test workflows are managed through Swift Package Manager.
+Tests are not included in the CMake build; test workflows are managed through Swift Package Manager (`swift test`).
