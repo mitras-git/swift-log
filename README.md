@@ -70,5 +70,5 @@ for the `swift-log` keyword.
 
 ## Building with CMake
 
-While Swift Package Manager (SPM) is the primary build system for development and testing, CMake build support is also available for integrated or mixed build environments if needed.
+While Swift Package Manager (SPM) is the primary build system for development and testing, CMake build support is also available for integrated or mixed build environments if needed. Note that tests are not included in the CMake build, they are managed through Swift Package Manager with `swift test`.
 
