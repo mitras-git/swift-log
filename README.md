@@ -70,24 +70,5 @@ for the `swift-log` keyword.
 
 ## Building with CMake
 
-Swift Package Manager (SPM) remains the primary workflow for contributors, including development and tests. CMake support is intended for mixed build systems that use SwiftLog. Make sure you have at least Swift 6.1, CMake 3.19 and Ninja 1.10 or newer
+While Swift Package Manager (SPM) is the primary build system for development and testing, CMake build support is also available for integrated or mixed build environments if needed.
 
-Use either the Xcode or Ninja generator:
-
-```bash
-cmake -B build -G Xcode
-cmake --build build --config Release
-```
-or:
-
-```bash
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
-and then:
-```bash
-cmake --install build
-```
-### Tests
-
-Tests are not included in the CMake build, they are managed through Swift Package Manager (`swift test`).
