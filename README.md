@@ -70,15 +70,7 @@ for the `swift-log` keyword.
 
 ## Building with CMake
 
-Swift Package Manager (SPM) remains the primary workflow for contributors, including development and tests. CMake support is intended for mixed build systems that use SwiftLog.
-
-### Requirements
-
-- Swift 6.1 or newer
-- CMake 3.19 or newer
-- Ninja 1.10 or newer
-
-### Build on macOS
+Swift Package Manager (SPM) remains the primary workflow for contributors, including development and tests. CMake support is intended for mixed build systems that use SwiftLog. Make sure you have at least Swift 6.1, CMake 3.19 and Ninja 1.10 or newer
 
 Use either the Xcode or Ninja generator:
 
@@ -92,47 +84,10 @@ or:
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
-
-### Build on Linux
-
-Use Ninja:
-
-```bash
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
-
-### Build on Windows
-
-Run from an **x64 Native Tools Command Prompt for VS** (or ensure `swiftc`, `cmake`, and `ninja` are available in `%PATH%`):
-
-```powershell
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
-
-Swift 6.1+ from the official [Swift for Windows](https://www.swift.org/install/windows/) is required.
-
-### Install
-
+and then:
 ```bash
 cmake --install build
 ```
-
-CMake builds the `Logging` and `InMemoryLogging` libraries. Builds are shared
-libraries by default, and can be switched to static libraries with
-`-DBUILD_SHARED_LIBS=OFF`.
-
-### Consuming with CMake
-
-Downstream CMake projects can find and link against `swift-log`:
-
-```cmake
-find_package(SwiftLog REQUIRED)
-
-target_link_libraries(YourTarget PRIVATE Logging)
-```
-
 ### Tests
 
-Tests are not included in the CMake build; test workflows are managed through Swift Package Manager (`swift test`).
+Tests are not included in the CMake build, they are managed through Swift Package Manager (`swift test`).
